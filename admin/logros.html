@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Logros - SysRestaurant</title>
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+
+  <body>
+    <!-- Sidebar -->
+    <div id="sidebar">
+      <!-- Logo / Brand -->
+      <a href="#" class="brand-link">
+        <i class="fa-2x fas fa-utensils"></i>
+        <span>SysRestaurant</span>
+      </a>
+
+      <!-- Menu Items -->
+      <ul>
+        <li>
+          <a href="#" class="" onclick="toggleSubmenu(event)">
+            <i class="fas fa-th"></i>Caja
+            <i class="fas fa-chevron-down toggle-icon"></i>
+          </a>
+          <!-- Submenu -->
+          <ul class="submenu">
+            <li>
+              <a href="arqueo.html"
+                ><i class="fa-regular fa-clipboard"></i> Arqueo</a
+              >
+            </li>
+            <li>
+              <a href="aperturacierrecaja.html" class=""
+                ><i class="fa-solid fa-box"></i> Apertura y cierre</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="pedido.html"><i class="fa-solid fa-cart-shopping"></i> Pedido</a>
+        </li>
+        <li>
+          <a href="#" onclick="toggleSubmenu(event)">
+            <i class="fa-regular fa-file-lines"></i>Reportes
+            <i class="fas fa-chevron-down toggle-icon"></i>
+          </a>
+          <!-- Submenu -->
+          <ul class="submenu">
+            <li>
+              <a href="consolidados.html"
+                ><i class="fa-regular fa-chart-bar"></i> Consolidados</a
+              >
+            </li>
+            <li>
+              <a href="graficos.html"><i class="fa-solid fa-chart-pie"></i>Gráficos</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="empleados.html" class=""><i class="fa-solid fa-users"></i> Empleados</a>
+        </li>
+        <li>
+          <a href="cocina.html" class=""><i class="fa-solid fa-utensils"></i> Cocina</a>
+        </li>
+        <li>
+          <a href="logros.html" class="active"><i class="fa-solid fa-house"></i> Logros</a>
+        </li>
+        <li>
+          <a href="../login.html" class="">
+            <i class="fa-solid fa-right-from-bracket"></i> Salir
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main" class="container-fluid">
+    
+      <!-- Sección de bienvenida -->
+      <div class="row mb-3">
+        <div class="col-12">
+          <h2>Mis logros</h2>
+          <p>Bienvenido, <strong>ADMIN</strong></p>
+        </div>
+      </div>
+    
+      <!-- Sección de filtros -->
+      <div class="row filter-section mb-4">
+        <div class="col-md-12">
+          <h5><i class="fas fa-filter"></i> Filtrado</h5>
+          <form>
+            <div class="row mb-3">
+              <div class="col-md-4">
+                <label for="rango-fecha" class="form-label">Rango de Fecha:</label>
+                <input type="text" id="rango-fecha" class="form-control" value="17/jul/2024 03:09 PM"
+                  readonly>
+              </div>
+              <div class="col-md-8">
+                <label for="filtrado-variable" class="form-label">Seleccionar variable de filtrado:</label>
+                <div class="d-flex align-items-center">
+                  <div class="form-check me-3">
+                    <input class="form-check-input" type="radio" name="filtrado" id="filtrado-ano">
+                    <label class="form-check-label" for="filtrado-ano">
+                      Año
+                    </label>
+                  </div>
+                  <div class="form-check me-3">
+                    <input class="form-check-input" type="radio" name="filtrado" id="filtrado-mes" checked>
+                    <label class="form-check-label" for="filtrado-mes">
+                      Mes
+                    </label>
+                  </div>
+                  <div class="form-check me-3">
+                    <input class="form-check-input" type="radio" name="filtrado" id="filtrado-dia">
+                    <label class="form-check-label" for="filtrado-dia">
+                      Día
+                    </label>
+                  </div>
+                  <div class="form-check me-3">
+                    <input class="form-check-input" type="radio" name="filtrado" id="filtrado-hora">
+                    <label class="form-check-label" for="filtrado-hora">
+                      Hora
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    
+      <!-- Sección de reportes de logros -->
+      <div class="row">
+        <!-- Reporte de total de pedidos -->
+        <div class="col-md-6 mb-4">
+          <div class="chart-container">
+            <h5 class="card-title"><i class="fas fa-chart-bar"></i> Reporte de total de pedidos</h5>
+            <canvas id="chartPedidos"></canvas>
+          </div>
+        </div>
+    
+        <!-- Reporte de propinas totales -->
+        <div class="col-md-6 mb-4">
+          <div class="chart-container">
+            <h5 class="card-title"><i class="fas fa-chart-pie"></i> Reporte de Propinas Totales</h5>
+            <canvas id="chartPropinas"></canvas>
+          </div>
+        </div>
+      </div>
+    
+    </div>
+        <!-- Chart.js para los gráficos -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      // Gráfico de total de pedidos
+      var ctxPedidos = document.getElementById('chartPedidos').getContext('2d');
+      var chartPedidos = new Chart(ctxPedidos, {
+          type: 'bar',
+          data: {
+              labels: ['Mesa', 'Recojo en tienda'],
+              datasets: [{
+                  label: 'Total de pedidos',
+                  data: [1500, 2500],
+                  backgroundColor: ['rgba(54, 162, 235, 0.5)', 'rgba(255, 206, 86, 0.5)'],
+                  borderColor: ['rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)'],
+                  borderWidth: 1
+              }]
+          },
+          options: {
+              responsive: true,
+              scales: {
+                  x: {
+                      beginAtZero: true
+                  },
+                  y: {
+                      beginAtZero: true
+                  }
+              }
+          }
+      });
+
+      // Gráfico de propinas totales
+      var ctxPropinas = document.getElementById('chartPropinas').getContext('2d');
+      var chartPropinas = new Chart(ctxPropinas, {
+          type: 'pie',
+          data: {
+              labels: ['Propinas Totales'],
+              datasets: [{
+                  label: 'Propinas Totales',
+                  data: [500],
+                  backgroundColor: ['rgba(75, 192, 192, 0.5)'],
+                  borderColor: ['rgba(75, 192, 192, 1)'],
+                  borderWidth: 1
+              }]
+          },
+          options: {
+              responsive: true
+          }
+      });
+  </script>
+    <!-- Bootstrap JS and FontAwesome -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/sidebar.js"></script>
+  </body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Empleado - SysRestaurant</title>
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="css/styles.css" />
+
+  </head>
+
+  <body>
+    <!-- Sidebar -->
+    <div id="sidebar">
+      <!-- Logo / Brand -->
+      <a href="#" class="brand-link">
+        <i class="fa-2x fas fa-utensils"></i>
+        <span>SysRestaurant</span>
+      </a>
+
+      <!-- Menu Items -->
+      <ul>
+        <li>
+          <a href="#" class="" onclick="toggleSubmenu(event)">
+            <i class="fas fa-th"></i>Caja
+            <i class="fas fa-chevron-down toggle-icon"></i>
+          </a>
+          <!-- Submenu -->
+          <ul class="submenu">
+            <li>
+              <a href="arqueo.html"
+                ><i class="fa-regular fa-clipboard"></i> Arqueo</a
+              >
+            </li>
+            <li>
+              <a href="aperturacierrecaja.html" class=""
+                ><i class="fa-solid fa-box"></i> Apertura y cierre</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="pedido.html"><i class="fa-solid fa-cart-shopping"></i> Pedido</a>
+        </li>
+        <li>
+          <a href="#" onclick="toggleSubmenu(event)">
+            <i class="fa-regular fa-file-lines"></i>Reportes
+            <i class="fas fa-chevron-down toggle-icon"></i>
+          </a>
+          <!-- Submenu -->
+          <ul class="submenu">
+            <li>
+              <a href="consolidados.html"
+                ><i class="fa-regular fa-chart-bar"></i> Consolidados</a
+              >
+            </li>
+            <li>
+              <a href="graficos.html"><i class="fa-solid fa-chart-pie"></i>Gráficos</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="empleados.html" class="active"><i class="fa-solid fa-users"></i> Empleados</a>
+        </li>
+        <li>
+          <a href="cocina.html" class=""><i class="fa-solid fa-utensils"></i> Cocina</a>
+        </li>
+        <li>
+          <a href="logros.html" class=""><i class="fa-solid fa-house"></i> Logros</a>
+        </li>
+        <li>
+          <a href="../login.html" class="">
+            <i class="fa-solid fa-right-from-bracket"></i> Salir
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+      <div id="main" class="container-fluid">
+        <!-- Cabecera -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2>Listado de Empleados</h2>
+            <div>
+                <button class="btn btn-primary"><i class="fas fa-plus"></i> Agregar</button>
+                <button class="btn btn-primary"><i class="fas fa-sync"></i> Actualizar</button>
+            </div>
+        </div>
+
+        <!-- Tabla de empleados -->
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Alias</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Documento / Nombre</th>
+                        <th scope="col">Perfil</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Fuente de Soda</td>
+                        <td>fuentedesoda@gmail.com</td>
+                        <td>475687445789 / FUENTE DE SODA</td>
+                        <td>Comanda en Pantalla de Cocina</td>
+                        <td><span class="badge bg-success">Activo</span></td>
+                        <td>
+                            <div class="btn-options"><i class="fas fa-ellipsis-h"></i></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Ana F</td>
+                        <td>anaf@gmail.com</td>
+                        <td>865434678 / ANA FUENTE SODA</td>
+                        <td>Cocinero</td>
+                        <td><span class="badge bg-success">Activo</span></td>
+                        <td>
+                            <div class="btn-options"><i class="fas fa-ellipsis-h"></i></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Sara F</td>
+                        <td>saraf@gmail.com</td>
+                        <td>65787899645 / SARA FUENTE DE SODA</td>
+                        <td>Colaborador servicio</td>
+                        <td><span class="badge bg-success">Activo</span></td>
+                        <td>
+                            <div class="btn-options"><i class="fas fa-ellipsis-h"></i></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>Carla</td>
+                        <td>carlaf@gmail.com</td>
+                        <td>87897070 / CARLA FUENTE DE SODA</td>
+                        <td>Caja Estándar</td>
+                        <td><span class="badge bg-success">Activo</span></td>
+                        <td>
+                            <div class="btn-options"><i class="fas fa-ellipsis-h"></i></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pie de tabla -->
+        <div class="d-flex justify-content-between align-items-center mt-3">
+            <div>
+                <span>Mostrando registros del 1 al 4 de un total de 4 registros</span>
+            </div>
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Anterior</a></li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap JS and FontAwesome -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/sidebar.js"></script>
+  </body>
+</html>
